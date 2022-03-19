@@ -1,6 +1,7 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
-import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import { Box, Button, Checkbox, Flex, Heading, Icon, Stack, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { RiAddLine, RiDeleteBinLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
+import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 
 export default function UserList() {
@@ -56,15 +57,26 @@ export default function UserList() {
                                 </Td>
                                 <Td>01/01/2020</Td>
                                 <Td>
-                                    <Button
-                                        as="a"
-                                        size="sm"
-                                        fontSize="sm"
-                                        colorScheme="purple"
-                                        leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                                    >
-                                        Editar
-                                    </Button>
+                                    <Stack direction="row">
+                                        <Button
+                                            as="a"
+                                            size="sm"
+                                            fontSize="sm"
+                                            colorScheme="purple"
+                                            leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                                        >
+                                            Editar
+                                        </Button>
+                                        <Button
+                                            as="a"
+                                            size="sm"
+                                            fontSize="sm"
+                                            colorScheme="red"
+                                            leftIcon={<Icon as={RiDeleteBinLine} fontSize="16" />}
+                                        >
+                                            Excluir
+                                        </Button>
+                                    </Stack>
                                 </Td>
                             </Tr>
                             <Tr>
@@ -79,15 +91,26 @@ export default function UserList() {
                                 </Td>
                                 <Td>01/01/2020</Td>
                                 <Td>
-                                    <Button
-                                        as="a"
-                                        size="sm"
-                                        fontSize="sm"
-                                        colorScheme="purple"
-                                        leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                                    >
-                                        Editar
-                                    </Button>
+                                    <Stack direction="row">
+                                        <Button
+                                            as="a"
+                                            size="sm"
+                                            fontSize="sm"
+                                            colorScheme="purple"
+                                            leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                                        >
+                                            Editar
+                                        </Button>
+                                        <Button
+                                            as="a"
+                                            size="sm"
+                                            fontSize="sm"
+                                            colorScheme="red"
+                                            leftIcon={<Icon as={RiDeleteBinLine} fontSize="16" />}
+                                        >
+                                            Excluir
+                                        </Button>
+                                    </Stack>
                                 </Td>
                             </Tr>
                             <Tr>
@@ -102,19 +125,32 @@ export default function UserList() {
                                 </Td>
                                 <Td>01/01/2020</Td>
                                 <Td>
-                                    <Button
-                                        as="a"
-                                        size="sm"
-                                        fontSize="sm"
-                                        colorScheme="purple"
-                                        leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                                    >
-                                        Editar
-                                    </Button>
+                                    <Stack direction="row">
+                                        <Button
+                                            as="a"
+                                            size="sm"
+                                            fontSize="sm"
+                                            colorScheme="purple"
+                                            leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                                        >
+                                            Editar
+                                        </Button>
+                                        <Button
+                                            as="a"
+                                            size="sm"
+                                            fontSize="sm"
+                                            colorScheme="red"
+                                            leftIcon={<Icon as={RiDeleteBinLine} fontSize="16" />}
+                                        >
+                                            Excluir
+                                        </Button>
+                                    </Stack>
                                 </Td>
                             </Tr>
                         </Tbody>
                     </Table>
+
+                    <Pagination />
                 </Box>
             </Flex>
         </Box>
