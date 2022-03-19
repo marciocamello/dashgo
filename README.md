@@ -1,3 +1,3 @@
 # DashGo
 
-- Dashboard using a NextJS with Chacra UI
+- Dashboard using a NextJS with Chakra UI
