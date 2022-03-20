@@ -1,34 +1,39 @@
 {
-  "name": "dashgo",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@chakra-ui/react": "^1.8.6",
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
-    "@hookform/resolvers": "^2.8.8",
-    "apexcharts": "^3.33.2",
-    "framer-motion": "^6.2.8",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-apexcharts": "^1.4.0",
-    "react-dom": "17.0.2",
-    "react-hook-form": "^7.28.1",
-    "react-icons": "^4.3.1",
-    "yup": "^0.32.11"
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@types/react": "^17.0.41",
-    "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
-    "typescript": "^4.6.2"
-  }
+    "name": "dashgo",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@chakra-ui/core": "^0.8.0",
+        "@chakra-ui/react": "^1.8.6",
+        "@emotion/react": "^11.8.2",
+        "@emotion/styled": "^11.8.1",
+        "@hookform/resolvers": "^2.8.8",
+        "apexcharts": "^3.33.2",
+        "axios": "^0.26.1",
+        "framer-motion": "^6.2.8",
+        "next": "12.1.0",
+        "react": "17.0.2",
+        "react-apexcharts": "^1.4.0",
+        "react-dom": "17.0.2",
+        "react-hook-form": "^7.28.1",
+        "react-icons": "^4.3.1",
+        "react-query": "^3.34.16",
+        "yup": "^0.32.11"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^6.0.0",
+        "@types/faker": "^6.6.9",
+        "@types/node": "^17.0.21",
+        "@types/react": "^17.0.41",
+        "eslint": "8.11.0",
+        "eslint-config-next": "12.1.0",
+        "miragejs": "^0.1.43",
+        "typescript": "^4.6.2"
+    }
 }
