@@ -1,10 +1,16 @@
-import { Box, Button, Checkbox, Flex, Heading, Icon, Stack, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Checkbox, Flex, Heading, Icon, Stack, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
+import Link from "next/link";
 import { RiAddLine, RiDeleteBinLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 
 export default function UserList() {
+    const isWideVersion = useBreakpointValue({
+        base: false,
+        lg: true,
+    });
+
     return (
         <Box>
             <Header />
@@ -20,15 +26,17 @@ export default function UserList() {
                     >
                         <Heading size="lg" fontWeight="normal">Usuários</Heading>
 
-                        <Button
-                            as="a"
-                            size="sm"
-                            fontSize="sm"
-                            colorScheme="pink"
-                            leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-                        >
-                            Criar novo
-                        </Button>
+                        <Link href="users/create" passHref>
+                            <Button
+                                as="a"
+                                size="sm"
+                                fontSize="sm"
+                                colorScheme="pink"
+                                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+                            >
+                                Criar novo
+                            </Button>
+                        </Link>
                     </Flex>
 
                     <Table
@@ -36,17 +44,17 @@ export default function UserList() {
                     >
                         <Thead>
                             <Tr>
-                                <Th px="6" color="gray.300" w="8">
+                                <Th px={["4", "4", "6"]} color="gray.300" w="8">
                                     <Checkbox colorScheme="pink" />
                                 </Th>
                                 <Th>Usuario</Th>
-                                <Th>Data de cadastro</Th>
+                                <Th>{isWideVersion && "Data de cadastro"}</Th>
                                 <Th w="8"></Th>
                             </Tr>
                         </Thead>
                         <Tbody>
                             <Tr>
-                                <Td px="6">
+                                <Td px={["4", "4", "6"]}>
                                     <Checkbox colorScheme="pink" />
                                 </Td>
                                 <Td>
@@ -55,7 +63,7 @@ export default function UserList() {
                                         <Text fontSize="sm" color="gray.300">mac3designer@gmail.com</Text>
                                     </Box>
                                 </Td>
-                                <Td>01/01/2020</Td>
+                                <Td>{isWideVersion && "01/01/2020"}</Td>
                                 <Td>
                                     <Stack direction="row">
                                         <Button
@@ -63,24 +71,26 @@ export default function UserList() {
                                             size="sm"
                                             fontSize="sm"
                                             colorScheme="purple"
+                                            iconSpacing={isWideVersion ? '1.5' : '-0.5'}
                                             leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
                                         >
-                                            Editar
+                                            {isWideVersion && "Editar"}
                                         </Button>
                                         <Button
                                             as="a"
                                             size="sm"
                                             fontSize="sm"
                                             colorScheme="red"
+                                            iconSpacing={isWideVersion ? '1.5' : '-0.5'}
                                             leftIcon={<Icon as={RiDeleteBinLine} fontSize="16" />}
                                         >
-                                            Excluir
+                                            {isWideVersion && "Excluir"}
                                         </Button>
                                     </Stack>
                                 </Td>
                             </Tr>
                             <Tr>
-                                <Td px="6">
+                                <Td px={["4", "4", "6"]}>
                                     <Checkbox colorScheme="pink" />
                                 </Td>
                                 <Td>
@@ -89,7 +99,7 @@ export default function UserList() {
                                         <Text fontSize="sm" color="gray.300">mac3designer@gmail.com</Text>
                                     </Box>
                                 </Td>
-                                <Td>01/01/2020</Td>
+                                <Td>{isWideVersion && "01/01/2020"}</Td>
                                 <Td>
                                     <Stack direction="row">
                                         <Button
@@ -97,24 +107,26 @@ export default function UserList() {
                                             size="sm"
                                             fontSize="sm"
                                             colorScheme="purple"
+                                            iconSpacing={isWideVersion ? '1.5' : '-0.5'}
                                             leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
                                         >
-                                            Editar
+                                            {isWideVersion && "Editar"}
                                         </Button>
                                         <Button
                                             as="a"
                                             size="sm"
                                             fontSize="sm"
                                             colorScheme="red"
+                                            iconSpacing={isWideVersion ? '1.5' : '-0.5'}
                                             leftIcon={<Icon as={RiDeleteBinLine} fontSize="16" />}
                                         >
-                                            Excluir
+                                            {isWideVersion && "Excluir"}
                                         </Button>
                                     </Stack>
                                 </Td>
                             </Tr>
                             <Tr>
-                                <Td px="6">
+                                <Td px={["4", "4", "6"]}>
                                     <Checkbox colorScheme="pink" />
                                 </Td>
                                 <Td>
@@ -123,26 +135,30 @@ export default function UserList() {
                                         <Text fontSize="sm" color="gray.300">mac3designer@gmail.com</Text>
                                     </Box>
                                 </Td>
-                                <Td>01/01/2020</Td>
+                                <Td>{isWideVersion && "01/01/2020"}</Td>
                                 <Td>
                                     <Stack direction="row">
-                                        <Button
-                                            as="a"
-                                            size="sm"
-                                            fontSize="sm"
-                                            colorScheme="purple"
-                                            leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                                        >
-                                            Editar
-                                        </Button>
+                                        <Link href="/users/edit" passHref>
+                                            <Button
+                                                as="a"
+                                                size="sm"
+                                                fontSize="sm"
+                                                colorScheme="purple"
+                                                iconSpacing={isWideVersion ? '1.5' : '-0.5'}
+                                                leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                                            >
+                                                {isWideVersion && "Editar"}
+                                            </Button>
+                                        </Link>
                                         <Button
                                             as="a"
                                             size="sm"
                                             fontSize="sm"
                                             colorScheme="red"
+                                            iconSpacing={isWideVersion ? '1.5' : '-0.5'}
                                             leftIcon={<Icon as={RiDeleteBinLine} fontSize="16" />}
                                         >
-                                            Excluir
+                                            {isWideVersion && "Excluir"}
                                         </Button>
                                     </Stack>
                                 </Td>

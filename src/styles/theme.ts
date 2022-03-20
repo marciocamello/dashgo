@@ -21,6 +21,9 @@ export const theme = extendTheme({
     },
     styles: {
         global: {
+            html: {
+                display: "grid"
+            },
             body: {
                 bg: 'gray.900',
                 color: 'gray.50'
