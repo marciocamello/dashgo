@@ -7,6 +7,7 @@ import { Profile } from './Profile';
 import { SearchBox } from './SearchBox';
 
 export function Header() {
+
     const { onOpen } = useSidebarDrawer();
 
     const isWideVersion = useBreakpointValue({
