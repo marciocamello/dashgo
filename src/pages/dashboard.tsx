@@ -1,8 +1,10 @@
 import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
+import { Can } from "../components/Acl/Can";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
+import { useCan } from "../hooks/useCan";
 import { setupAPIClient } from "../services/api";
 import { withSSRAuth } from "../utils/withSSRAuth";
 
@@ -65,6 +67,10 @@ const series = [
 
 export default function Dashboard() {
 
+    const userCanSeeMetrics = useCan({
+        roles: ["administrator", "editor"]
+    });
+
     return (
         <Flex direction="column" h="100vh" >
             <Header />
@@ -78,7 +84,7 @@ export default function Dashboard() {
                     minChildWidth="320px"
                     alignItems="flex-start"
                 >
-                    <Box
+                    {userCanSeeMetrics && <Box
                         p={["6", "8"]}
                         bg="gray.800"
                         borderRadius={8}
@@ -89,19 +95,23 @@ export default function Dashboard() {
                             series={series}
                             type="area"
                         />
-                    </Box>
-                    <Box
-                        p={["6", "8"]}
-                        bg="gray.800"
-                        borderRadius={8}
+                    </Box>}
+                    <Can
+                        permissions={["users.create"]}
                     >
-                        <Text fontSize="lg" mb="4">Taxa de abertura</Text>
-                        <Chart
-                            options={options}
-                            series={series}
-                            type="area"
-                        />
-                    </Box>
+                        <Box
+                            p={["6", "8"]}
+                            bg="gray.800"
+                            borderRadius={8}
+                        >
+                            <Text fontSize="lg" mb="4">Taxa de abertura</Text>
+                            <Chart
+                                options={options}
+                                series={series}
+                                type="area"
+                            />
+                        </Box>
+                    </Can>
                 </SimpleGrid>
             </Flex>
         </Flex >

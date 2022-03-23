@@ -5,9 +5,11 @@ import { RiAddLine, RiDeleteBinLine, RiPencilLine, RiRefreshLine } from "react-i
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
-import { api } from "../../services/api";
+import { setupAPIClient } from "../../services/api";
+import { api } from "../../services/apiClient";
 import { useUsers } from "../../services/hooks/users/useUsers";
 import { queryClient } from "../../services/queryClient";
+import { withSSRAuth } from "../../utils/withSSRAuth";
 
 export default function UserList() {
     const [page, setPage] = useState(1);
@@ -155,3 +157,19 @@ export default function UserList() {
         </Box >
     )
 }
+
+export const getServerSideProps = withSSRAuth<{ users: string[] }>(async (context) => {
+    const apiClient = setupAPIClient(context);
+
+    const response = await apiClient.get('/me');
+    console.log(response.data);
+
+    return {
+        props: {
+            users: [""]
+        }
+    }
+}, {
+    permissions: ['user.list'],
+    roles: ['administrator']
+})

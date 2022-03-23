@@ -16,7 +16,8 @@ type SignIngCredentials = {
 }
 
 type AuthContextData = {
-    signIn(credentials: SignIngCredentials): Promise<void>;
+    signIn: (credentials: SignIngCredentials) => Promise<void>;
+    signOut: () => void;
     user: User;
     isAuthenticated: boolean;
 }
@@ -27,9 +28,17 @@ type AuthProviderProps = {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
+let authChannel: BroadcastChannel;
+
 export function signOut() {
+    authChannel = new BroadcastChannel('auth');
+
     destroyCookie({}, 'dashgo.token');
     destroyCookie({}, 'dashgo.refreshToken');
+
+    authChannel.postMessage({
+        type: 'signOut'
+    });
 
     Router.push('/');
 }
@@ -37,6 +46,24 @@ export function signOut() {
 function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<User>(null);
     const isAuthenticated = !!user;
+
+    useEffect(() => {
+        authChannel = new BroadcastChannel('auth');
+
+        authChannel.onmessage = (event) => {
+            switch (event.data.type) {
+                case 'signOut':
+                    Router.push('/');
+                    authChannel.close();
+                    break;
+                case 'signIn':
+                    Router.push('/dashboard');
+                    authChannel.close();
+                default:
+                    break;
+            }
+        }
+    }, []);
 
     useEffect(() => {
         const { 'dashgo.token': token } = parseCookies();
@@ -102,6 +129,10 @@ function AuthProvider({ children }: AuthProviderProps) {
             api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
             Router.push('/dashboard');
+
+            authChannel.postMessage({
+                type: 'signIn'
+            });
         } catch (err) {
             console.log(err);
         }
@@ -111,6 +142,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         <AuthContext.Provider value={{
             signIn,
             user,
+            signOut,
             isAuthenticated
         }}>
             {children}
