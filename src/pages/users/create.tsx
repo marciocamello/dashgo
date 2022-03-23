@@ -10,6 +10,7 @@ import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { api } from "../../services/apiClient";
 import { queryClient } from "../../services/queryClient";
+import { withSSRAuth } from "../../utils/withSSRAuth";
 
 type UserFormData = {
     name: string;
@@ -134,3 +135,14 @@ export default function CreateUser() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth<{ users: string[] }>(async (context) => {
+
+    return {
+        props: {
+            users: [""]
+        }
+    }
+}, {
+    roles: ['administrator', 'editor']
+})

@@ -22,7 +22,7 @@ export function Profile({ showProfileData }: ProfileProps) {
             >
                 <Text>{user?.name}</Text>
                 <Text color="gray.300" fontSize="small">
-                    {user.email}
+                    {user?.email}
                 </Text>
             </Box>}
 
